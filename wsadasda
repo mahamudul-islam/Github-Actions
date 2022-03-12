@@ -1,0 +1,82 @@
+1. Create Sample.py
+def foo(a):
+return a + 2
+2. Click Actions
+3. Select Pylint
+4. Open pylint.yml
+5. Only keep python version 3.8 and 3.9 
+6. Commit pylint.yml
+To fix the job failed
+7. edit Sample.py and replace with this:
+"""
+Helper functions live here
+"""
+
+
+def increment_by_two(var_to_increment):
+    """
+    This function increments input by two
+    :param var_to_increment: param to increment
+    :return: incremented variable
+    """
+    return var_to_increment + 2
+
+8. Commit sample.py and see the changes in Actions
+
+Unit Testing:
+9. From Actions click “new workflow”
+10. Select Python Application
+11. Commit python-app.yml
+12. edit python-app.yml:
+Change name: Python Application to name: unit tests and commit python-app.yml
+13. now go back to repo home and create a new branch called add-tests
+14. Now from add file create new file named test_sample.py and write this:
+
+"""
+Test helper functions
+"""
+
+import unittest
+from sample import increment_by_two,
+
+class TestSampleMethods(unittest.TestCase):
+    """
+    Test harness
+    """
+
+    def test_increment_by_two(self):
+        """
+        Test increments
+        """
+        self.assertEqual(increment_by_two(-2), 0)
+        self.assertEqual(increment_by_two(0), 2)
+        self.assertEqual(increment_by_two(3), 5)
+
+if __name__ == '__main__':
+    unittest.main()
+
+15. now commit test_sample.py
+16. After committing go back to the repo home and open “compare and pull request” and create pull request
+17. now open your python-app.yml from add-test branch then copy his python-app.yml contents from his workflow and replace yours with it.
+18. Now commit and open pull request and create pull request then merge.
+19.now delete add-test branch
+
+Code Cove:
+1. log in to codecov using this link: https://about.codecov.io/
+2. Install codecove app using: https://github.com/apps/codecov
+3. install codecove again from https://github.com/marketplace?type=&verification=&query=codecov+
+Select use latest version
+4. go to my repo home and select workflows and create a new file name codecov.yml with his codecov.yml contents then commit
+5. go to settings on github then secrets then action then do new repo secret
+6. put CODECOV_TOKEN in name then copy the token from https://app.codecov.io/gh/?installation_id=24049746&setup_action=install select your repo where you are performing task open it and copy token and paste it in value.
+7. Create new branch named add-increment
+8. edit sampl.py and copy paste everything from his sample.py
+9. edit test_sample.py from the current repo and copy paste everything from his test sample.py and commit
+
+Deploy:
+1. copy paste his deploy.yml in your main repo
+2. Secretss: Deploy Host value moon.scs.ryerson.ca
+Deploy username to m15islam
+Port number to 22
+Password to moon pass
+
